@@ -21,6 +21,22 @@ public class DBSCAN {
         corePoints = new ArrayList<>();
         clusterMap = new HashMap<>();
         clusters = new HashMap<>();
+        populateNeighbors();
+        System.out.print("Neighbors: ");
+        for (double[] point : neighborList.keySet()){
+            System.out.print(Arrays.toString(point) + "'s neighbors: ");
+            for (double [] neighbor : neighborList.get(point)){
+                System.out.print(Arrays.toString(neighbor) + "  ");
+            }
+            System.out.println();
+        }
+        populateCorePoints();
+        System.out.print("Core points: ");
+        for (double[] point : corePoints){
+            System.out.print(Arrays.toString(point) + " ");
+        }
+        System.out.println();
+        DBSCAN();
     }
 
     private double distance(double[] p1, double[] p2){ // Calculates L2 Norm distance between two points
@@ -60,16 +76,18 @@ public class DBSCAN {
         Random rand = new Random();
         while (!corePoints.isEmpty()) {
             double[] randomCorePoint = corePoints.get(rand.nextInt(corePoints.size()));
+            System.out.println("Random point: " + Arrays.toString(randomCorePoint));
             numClusters++;
             clusterMap.put(randomCorePoint, numClusters);
             clusters.put(numClusters, new ArrayList<>());
             clusters.get(numClusters).add(randomCorePoint);
             corePoints.remove(randomCorePoint);
             for (double[] neighbor : neighborList.get(randomCorePoint)){
-                clusterMap.put(neighbor, numClusters);
-                clusters.get(numClusters).add(neighbor);
-                corePoints.remove(neighbor);
-                DBRecur(neighbor);
+                if (!clusterMap.containsKey(neighbor)) {
+                    clusterMap.put(neighbor, numClusters);
+                    clusters.get(numClusters).add(neighbor);
+                    DBRecur(neighbor);
+                }
             }
         }
         clusters.put(0, new ArrayList<>());
@@ -83,12 +101,29 @@ public class DBSCAN {
 
     public void DBRecur(double[] point){
         if (corePoints.contains(point)){
+            corePoints.remove(point);
             for (double[] neighbor : neighborList.get(point)){
-                clusterMap.put(neighbor, numClusters);
-                clusters.get(numClusters).add(neighbor);
-                corePoints.remove(neighbor);
-                DBRecur(neighbor);
+                if (!clusterMap.containsKey(neighbor)){
+                    clusterMap.put(neighbor, numClusters);
+                    clusters.get(numClusters).add(neighbor);
+                    DBRecur(neighbor);
+                }
             }
         }
+    }
+
+    public void getClusters(){
+        for (int i = 1; i < clusters.keySet().size(); i++){
+            System.out.println("Cluster " + i + ": ");
+            for (int j = 0; j < clusters.get(i).size(); j++){
+                System.out.print(Arrays.toString(clusters.get(i).get(j)) + "   ");
+            }
+            System.out.println();
+        }
+        System.out.print("Noise points: ");
+        for (int j = 0; j < clusters.get(0).size(); j++){
+            System.out.print(Arrays.toString(clusters.get(0).get(j)) + "   ");
+        }
+        System.out.println();
     }
 }
