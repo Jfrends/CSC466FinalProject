@@ -13,29 +13,35 @@ public class DBSCAN {
     private HashMap<double[], Integer> clusterMap; // Holds cluster information for each point
     private HashMap<Integer, ArrayList<double[]>> clusters; // Hplds clusters
     HashMap<double[], ArrayList<double[]>> neighborList;
-    public DBSCAN(double[][] m, double e, int minpts){
-        matrix = m;
-        epsilon = e;
-        minPts = minpts;
+    private final boolean debugMode;
+    public DBSCAN(double[][] data, double epsilon_value, int minimumPts, boolean debugModeOn){
+        matrix = data;
+        epsilon = epsilon_value;
+        minPts = minimumPts;
         neighborList = new HashMap<>();
         corePoints = new ArrayList<>();
         clusterMap = new HashMap<>();
         clusters = new HashMap<>();
+        debugMode = debugModeOn;
         populateNeighbors();
-        System.out.print("Neighbors: ");
-        for (double[] point : neighborList.keySet()){
-            System.out.print(Arrays.toString(point) + "'s neighbors: ");
-            for (double [] neighbor : neighborList.get(point)){
-                System.out.print(Arrays.toString(neighbor) + "  ");
+        if (debugMode) {
+            System.out.print("Neighbors: ");
+            for (double[] point : neighborList.keySet()) {
+                System.out.print(Arrays.toString(point) + "'s neighbors: ");
+                for (double[] neighbor : neighborList.get(point)) {
+                    System.out.print(Arrays.toString(neighbor) + "  ");
+                }
+                System.out.println();
+            }
+        }
+        populateCorePoints();
+        if (debugMode) {
+            System.out.print("Core points: ");
+            for (double[] point : corePoints) {
+                System.out.print(Arrays.toString(point) + " ");
             }
             System.out.println();
         }
-        populateCorePoints();
-        System.out.print("Core points: ");
-        for (double[] point : corePoints){
-            System.out.print(Arrays.toString(point) + " ");
-        }
-        System.out.println();
         DBSCAN();
     }
 
@@ -68,7 +74,9 @@ public class DBSCAN {
         Random rand = new Random();
         while (!corePoints.isEmpty()) {
             double[] randomCorePoint = corePoints.get(rand.nextInt(corePoints.size()));
-            System.out.println("Random point: " + Arrays.toString(randomCorePoint));
+            if (debugMode) {
+                System.out.println("Random point: " + Arrays.toString(randomCorePoint));
+            }
             numClusters++;
             clusterMap.put(randomCorePoint, numClusters);
             clusters.put(numClusters, new ArrayList<>());
