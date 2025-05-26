@@ -8,6 +8,14 @@ public class Processing {
         }
     }
 
+    public static double distance(double[] p1, double[] p2){ // Calculates L2 Norm distance between two points
+        double sum = 0;
+        for (int i = 0; i < p1.length; i++){
+            sum += Math.pow(p1[i] - p2[i], 2);
+        }
+        return Math.sqrt(sum);
+    }
+
     private static double standardize(double[][] matrix, int row, int col){
         double mean =  mean(matrix, col);
         return (matrix[row][col] - mean) / stddev(matrix, col, mean);

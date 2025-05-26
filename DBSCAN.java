@@ -39,18 +39,10 @@ public class DBSCAN {
         DBSCAN();
     }
 
-    private double distance(double[] p1, double[] p2){ // Calculates L2 Norm distance between two points
-        double sum = 0;
-        for (int i = 0; i < p1.length; i++){
-            sum += Math.pow(p1[i] - p2[i], 2);
-        }
-        return Math.sqrt(sum);
-    }
-
     public void populateNeighbors(){ // Calculates distances between each pair of points and adds them to the neighborList if they are less than epsilon apart from each other
         for (int i = 0; i < matrix.length; i++){
             for (int j = i+1; j < matrix.length; j++){
-                if (distance(matrix[i], matrix[j]) <= epsilon){
+                if (Processing.distance(matrix[i], matrix[j]) <= epsilon){
                     if (!neighborList.containsKey(matrix[i])){
                         neighborList.put(matrix[i], new ArrayList<>());
                     }
