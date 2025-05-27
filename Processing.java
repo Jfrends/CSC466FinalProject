@@ -38,4 +38,9 @@ public class Processing {
         return stddev;
     }
 
+    private static void OneHotEncoder(double [][] matrix, int col) {
+
+
+    }
+
 }
