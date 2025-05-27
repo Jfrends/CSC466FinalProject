@@ -150,5 +150,14 @@ public class Matrix {
     // Each element of the HashMap that is returned contains the value for the attribute
     // and an ArrayList of rows that have this value.
 
+    private HashSet<String> findDifferentValues(String[][] data, int attribute, ArrayList<Integer> rows) {
+        HashSet<String> values = new HashSet<>();
+        for (int rowIndex : rows) {
+            String value = data[rowIndex][attribute];
+            values.add(value);
+        }
+        return values;
+    }
+
 
 }
