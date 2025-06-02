@@ -1,0 +1,23 @@
+What we want to do, compare the two algorithms below: 
+●	DBScan 
+●	K Means Clustering 
+Steps: 
+1)	Import the data set 
+2)	Standardize the features 
+3)	Run a one hot encoder on the categorical variables 
+
+First, were gonna write the code for DBScan and K Means Clustering. Then we are going to run the algorithms of DBScan and K Means Clustering on the Data Set.
+
+
+
+Files + Break Down of Tasks Among Group: 
+●	General Processing File: 
+→ one hot encoding: Collin 
+→ standardization: Josh  
+→ reading in the data from the file ~  Tara 
+
+●	DBScan Algorithm File ~  Josh & Collin 
+
+●	K Means Clustering Algorithm File ~  Tara & Justin 
+
+Silhouette Score: 

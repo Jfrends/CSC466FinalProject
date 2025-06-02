@@ -18,6 +18,7 @@ public class Matrix {
         return this.data;
     }
 
+    /*
     private int findFrequency(int attribute, int value, ArrayList<Integer> rows) {
         int count = 0;
 
@@ -52,10 +53,6 @@ public class Matrix {
     } //Examines only the specified rows of the array. Returns an ArrayList of the rows where
     // the value for the attribute is equal to value.
 
-    private double log2(double number) {
-        return Math.log(number) / Math.log(2);
-    }//returns log2 of the input
-
     public double findEntropy(ArrayList<Integer> rows) {
         double entropy = 0.0;
         int total = rows.size();
@@ -68,8 +65,6 @@ public class Matrix {
         }
         return entropy;
     } //finds the entropy of the dataset that consists of the specified rows.
-
-
     private double findEntropy(int attribute, ArrayList<Integer> rows) {
         double entropy = 0.0;
         int totalRows = rows.size();
@@ -149,6 +144,13 @@ public class Matrix {
     } //Splits the dataset that is defined by rows on the attribute.
     // Each element of the HashMap that is returned contains the value for the attribute
     // and an ArrayList of rows that have this value.
+     */
+
+    private double log2(double number) {
+        return Math.log(number) / Math.log(2);
+    }//returns log2 of the input
+
+
 
     private HashSet<String> findDifferentValues(String[][] data, int attribute, ArrayList<Integer> rows) {
         HashSet<String> values = new HashSet<>();
@@ -158,6 +160,8 @@ public class Matrix {
         }
         return values;
     }
+
+
 
 
 }
