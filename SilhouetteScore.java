@@ -14,19 +14,19 @@ public class SilhouetteScore {
         return Math.sqrt(sum);
     }
 
-    public static double computeSilhouetteScore(List<double[]> points, int[] labels) {
+    public static double computeSilhouetteScore(List<double[]> points, int[] clusters) {
         int n = points.size();
         double total = 0.0;
 
         for (int i = 0; i < n; i++) {
             double[] pointI = points.get(i);
-            int labelI = labels[i];
+            int clusterI = clusters[i];
 
             double a = 0.0;
             int sameClusterCount = 0;
 
             for (int j = 0; j < n; j++) {
-                if (i != j && labels[j] == labelI) {
+                if (i != j && clusters[j] == clusterI) {
                     a += euclideanDistance(pointI, points.get(j));
                     sameClusterCount++;
                 }
@@ -41,8 +41,8 @@ public class SilhouetteScore {
             double b = Double.MAX_VALUE;
             Map<Integer, List<double[]>> clusterMap = new HashMap<>();
             for (int j = 0; j < n; j++) {
-                if (labels[j] != labelI) {
-                    clusterMap.computeIfAbsent(labels[j], k -> new ArrayList<>()).add(points.get(j));
+                if (clusters[j] != clusterI) {
+                    clusterMap.computeIfAbsent(clusters[j], k -> new ArrayList<>()).add(points.get(j));
                 }
             }
             for (Map.Entry<Integer, List<double[]>> entry : clusterMap.entrySet()) {

@@ -17,6 +17,16 @@ public class Testing {
 
         double score = SilhouetteScore.computeSilhouetteScore(points, labels);
         System.out.println("Average silhouette score: " + score);
+
+        String[] categories = {"male", "female"};
+        String[] data2 = {"male", "female", "female", "male"};
+
+        OneHotEncoder encoder = new OneHotEncoder(categories);
+        double[][] encoded = encoder.transform(data2);
+
+        for (double[] row : encoded) {
+            System.out.println(Arrays.toString(row));
+        }
     }
 
 
