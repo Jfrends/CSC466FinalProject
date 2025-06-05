@@ -1,5 +1,10 @@
 public class Processing {
 
+
+    public static void testFunction()
+    {
+        System.out.println("testing");
+    }
     public static void normalize(double[][] matrix, int end){
         for (int col = 0; col < end; col++){
             for (int row = 0; row < matrix.length; row++){
