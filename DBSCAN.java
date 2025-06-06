@@ -82,7 +82,7 @@ public class DBSCAN {
             clusters.put(numClusters, new ArrayList<>());
             clusters.get(numClusters).add(randomCorePoint);
             corePoints.remove(randomCorePoint);
-            for (double[] neighbor : neighborList.get(randomCorePoint)){
+            for (double[] neighbor : neighborList.get(randomCorePoint)) {
                 if (!clusterMap.containsKey(neighbor)) {
                     clusterMap.put(neighbor, numClusters);
                     clusters.get(numClusters).add(neighbor);
@@ -125,5 +125,27 @@ public class DBSCAN {
             System.out.print(Arrays.toString(clusters.get(0).get(j)) + "   ");
         }
         System.out.println();
+    }
+
+    public void getClustersReversed(){
+        for (double[] point : clusterMap.keySet()){
+            System.out.println("" + point[0] + ", " + point[1] + ", " + clusterMap.get(point));
+        }
+    }
+
+    public double getSilhoutteScore(){
+        ArrayList<double[]> pointsList = new ArrayList<>();
+        int[] c = new int[clusterMap.size()];
+        int i = 0;
+        for (double[] point : clusterMap.keySet()){
+            c[i] = clusterMap.get(point);
+            pointsList.add(point);
+            i++;
+        }
+        return SilhouetteScore.computeSilhouetteScore(pointsList, c);
+    }
+
+    public int getNumClusters(){
+        return numClusters;
     }
 }
