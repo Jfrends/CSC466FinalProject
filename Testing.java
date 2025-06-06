@@ -27,6 +27,20 @@ public class Testing {
         for (double[] row : encoded) {
             System.out.println(Arrays.toString(row));
         }
+        Matrix numericMatrix = new Matrix(new double[][] {
+                {1.0, 2.0},
+                {3.0, 4.0},
+                {5.0, 6.0},
+                {7.0, 8.0}
+        });
+
+        String[] gender = {"Male", "Female", "Female", "Male"};
+
+        Matrix full = MatrixUtils.addOneHotColumn(numericMatrix, gender, new String[]{"Male", "Female"});
+
+        for (double[] row : full.getData()) {
+            System.out.println(Arrays.toString(row));
+        }
     }
 
 
