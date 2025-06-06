@@ -6,16 +6,15 @@ public class Processing {
         System.out.println("testing");
     }
 
-    public static void normalize(double[][] matrix, int end){
-        //change method signature to static double[][]
-        //make a return matrix here: double[][] returnMatrix = new returnMatrix[#rows][#cols]
+    public static double[][] normalize(double[][] matrix, int end){
+        double [][] output_matrix = new double[matrix.length][matrix[0].length];
         for (int col = 0; col < end; col++){
             for (int row = 0; row < matrix.length; row++){
 
-                //returnMatrix[row][col] = standardize(matrix, row, col)
-                matrix[row][col] = standardize(matrix, row, col);
+                output_matrix[row][col] = standardize(matrix, row, col);
             }
         }
+        return output_matrix;
     }
 
     public static double distance(double[] p1, double[] p2){ // Calculates L2 Norm distance between two points
