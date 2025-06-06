@@ -27,6 +27,20 @@ public class Matrix {
         }
     }
 
+    public List<Point> getListOfPoints()
+    {
+        ArrayList<Point> matrixAsPoints = new ArrayList<Point>();
+
+        for(int row = 0; row < data.length; row++)
+        {
+            Point point = new Point(data[row]);
+            matrixAsPoints.add(point);
+        }
+
+        return matrixAsPoints;
+
+    }
+
     public void createMallMatrix(String fileName)
     {
 
