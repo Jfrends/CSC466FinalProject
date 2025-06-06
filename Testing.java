@@ -3,6 +3,23 @@ import java.util.List;
 
 public class Testing {
     public static void main(String[] args){
+
+        //testing to see if Matrix Constructor properly populated matrix with file names
+        String mallFile = "C://Users//tarar//Downloads//Mall_Customers.csv";
+        Matrix mallMatrix = new Matrix(mallFile, Matrix.MALLFILE);
+
+
+        //Reading in the donutData File
+        String donutFile = "C://Users//tarar//Downloads//donut_data.txt";
+        Matrix donutMatrix = new Matrix(donutFile,Matrix.DONUTFILE);
+        double[][] donutMatrixData = donutMatrix.getData();
+
+
+
+
+
+
+
         double[][] data = {{1, 1}, {1, 2}, {2, 1}, {5, 6}, {5, 5}, {4, 5}, {5, 7}, {5, 8}, {5, 9}, {5, 10}, {20, 20}};
         DBSCAN db = new DBSCAN(data, 2,  2, false);
         db.getClusters();
