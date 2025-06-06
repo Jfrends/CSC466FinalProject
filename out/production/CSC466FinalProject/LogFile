@@ -2,3 +2,6 @@ Did Silhouette Score function and generated synthetic data set on Monday 6/2/25,
 Did OneHotEncoder on Wednesday 6/4/25, to work with another data set (we scrapped that idea) took about 2.5 hours
 - Colin Hassett
 
+Did the KMeans Clustering code along with the point and cluster class, Monday 6/2/25 took about 3 hours to do.
+Wrote the K hyperparamter tuning code to find the best k 6/5/25 took about 30 minutes, and did the some of the K clustering slides as well, on the same day 30 minutes.
+-Justin Mai
