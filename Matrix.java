@@ -1,19 +1,35 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Matrix {
     private double[][] data;
+
+    public static int DONUTFILE = 1;
+    public static int MALLFILE = 2;
     //Constructors
     public Matrix(double[][] data) {
         this.data = data;
     }
 
-    public Matrix(String fileName) {
+    public Matrix(String fileName, int typeOfFile)
+    {
+        if(typeOfFile == DONUTFILE)
+        {
+            //create donut matrix
+            createDonutMatrix(fileName);
+        }
+        else if(typeOfFile == MALLFILE)
+        {
+            //create mall matrix
+            createMallMatrix(fileName);
+        }
+    }
+
+    public void createMallMatrix(String fileName)
+    {
+
         int numCols = 0;
         int numRows = 0;
         File file = new File(fileName);
@@ -25,34 +41,152 @@ public class Matrix {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] lineElements = line.split(",");
-                numRows++;
                 numCols = lineElements.length;
+                numRows++;
 
             }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("NumCols: " + numCols + " NumRows: " + numRows);
+
+
+
+        data = new double[numRows-1][numCols];
+
+        //this is temporarily storing just Age, Annual Income, Spending Score; Gender is excluded here
+        double[][] dataTemp = new double[numRows-1][numCols-2];
+
+
+        //genderColumn temporarily stores gender
+        String[] genderColumn = new String[numRows-1];
+
+        try {
+            Scanner scanner2 = new Scanner(file);
+            int row = 0;
+            while(scanner2.hasNextLine())
+            {
+
+                String line = scanner2.nextLine().trim();
+                //excluding the header row
+                if(row == 0)
+                {
+                    row++;
+                    continue;
+                }
+
+
+                String[] elements = line.split(",");
+
+                for(int col = 1; col < elements.length; col++)
+                {
+
+                    if(col == 1)
+                    {
+                        genderColumn[row-1] = elements[col];
+                    }
+                    else
+                    {
+                        int val = Integer.parseInt(elements[col]);
+                        dataTemp[row-1][col-2] = (double) val;
+                    }
+
+                }
+                row++;
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        //print out the data double array list:
+        for(int row = 0; row < data.length; row++)
+        {
+            System.out.println(dataTemp[row][0] + " " + dataTemp[row][1] + " " + dataTemp[row][2] + " " + genderColumn[row]);
+        }
+
+        String[] categories = {"Male", "Female"};
+
+
+        OneHotEncoder encoder = new OneHotEncoder(categories);
+        double[][] encoded = encoder.transform(genderColumn);
+
+        for(int row = 0; row < numRows-1; row++ )
+        {
+            data[row][numCols-2] = encoded[row][0];
+            data[row][numCols-1] = encoded[row][1];
+
+
+        }
+
+
+        for(int row = 0; row < dataTemp.length; row++)
+        {
+            for(int col = 0; col < dataTemp[row].length; col++)
+            {
+                data[row][col] = Processing.standardize(dataTemp, row,col);
+            }
+        }
+
+        for(int row = 0; row < numRows -1; row++)
+        {
+            System.out.println(data[row][3] + "  " + data[row][4] + " " + data[row][0] + " " + data[row][1] + " " + data[row][2]);
+
+        }
+
+
+
+    }
+
+
+
+    //Matrix Constructor for Donut File
+    public void createDonutMatrix(String fileName) {
+        int numCols = 0;
+        int numRows = 0;
+        File file = new File(fileName);
+        Scanner scanner = null;
+
+        //determining number of rows and columns in the data set and initializing its dimensions
+        try {
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] lineElements = line.split(",");
+                numCols = lineElements.length;
+                numRows++;
+
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
         data = new double[numRows][numCols];
 
-        for (int i = 0; i < numRows; i++)
-        {
-            //for(int j = 0; j < numCols; j++)
-            //{
-                while(scanner.hasNextLine())
+
+        try {
+            Scanner scanner2 = new Scanner(file);
+            int row = 0;
+            while(scanner2.hasNextLine())
+            {
+                String line = scanner2.nextLine().trim();
+                String[] elements = line.split(",");
+                for(int col = 0; col < elements.length; col++)
                 {
-                    String line = scanner.nextLine();
-                    String[] elements = line.split(",");
-                    for(int e = 0; e < elements.length; e++)
-                    {
-                        String element = elements[e];
-                        int elementInteger = Integer.parseInt(element);
-                        double elementDouble = (double) elementInteger;
-                        data[i][e] = elementDouble;
-                    }
+                    data[row][col] = Double.parseDouble(elements[col]);
                 }
-            //}
+                row++;
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
+
     }
+
 
     public int numRows() {
         return this.data.length;
