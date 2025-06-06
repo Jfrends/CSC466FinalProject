@@ -14,7 +14,7 @@ public class Testing {
         KMeansCluster KMeansClusterMall = new KMeansCluster(mallMatrixPoints, 5, 15);
         KMeansClusterMall.algo();
         List<Cluster> listClusters = KMeansClusterMall.getClusters();
-        for(Cluster cluster : listClusters)
+        /*for(Cluster cluster : listClusters)
         {
             Point centroid = cluster.getCenroid();
             List<Point> points = cluster.getPoints();
@@ -24,12 +24,44 @@ public class Testing {
             {
                 System.out.println(point.toString());
             }
-        }
+        }*/
 
         //Reading in the donutData File
         String donutFile = "C://Users//tarar//Downloads//donut_data.txt";
         Matrix donutMatrix = new Matrix(donutFile,Matrix.DONUTFILE);
         double[][] donutMatrixData = donutMatrix.getData();
+
+        //K means clustering for donutData File below:
+        List<Point> donutMatrixPoints = donutMatrix.getListOfPoints();
+        KMeansCluster KMeansClusterDonut = new KMeansCluster(donutMatrixPoints, 5, 15);
+        KMeansClusterDonut.algo();
+        List<Cluster> donutListClusters = KMeansClusterDonut.getClusters();
+
+        /*System.out.println("Donut Clusters are Printed Below: ");
+        for(Cluster cluster : donutListClusters)
+        {
+            Point centroid = cluster.getCenroid();
+            List<Point> points = cluster.getPoints();
+            System.out.println("Centroid is:  " + centroid.toString());
+            System.out.println("Points are below: ");
+            for(Point point : points)
+            {
+                System.out.println(point.toString());
+            }
+        }*/
+
+        /*System.out.println("normalized donutData is below: ");
+        for(int row = 0; row < donutMatrixData.length; row++)
+        {
+            for(int col = 0; col < donutMatrixData[row].length; col++)
+            {
+                System.out.print(donutMatrixData[row][col] + " ");
+            }
+            System.out.println();
+
+        }*/
+
+        //donutData K Means Clustering:
 
 
 
