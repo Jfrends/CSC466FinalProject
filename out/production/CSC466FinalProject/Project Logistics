@@ -12,12 +12,12 @@ First, were gonna write the code for DBScan and K Means Clustering. Then we are 
 
 Files + Break Down of Tasks Among Group: 
 ●	General Processing File: 
-→ one hot encoding: Collin 
+→ one hot encoding: Colin
 → standardization: Josh  
 → reading in the data from the file ~  Tara 
 
-●	DBScan Algorithm File ~  Josh & Collin 
+●	DBScan Algorithm File ~  Josh & Colin
 
 ●	K Means Clustering Algorithm File ~  Tara & Justin 
 
-Silhouette Score: 
+Silhouette Score: Colin
