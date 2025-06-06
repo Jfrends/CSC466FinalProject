@@ -6,3 +6,10 @@ Justin and I worked on the report which took us about 40 minutes.
 Did the KMeans Clustering code along with the point and cluster class, Monday 6/2/25 took about 3 hours to do.
 Wrote the K hyperparamter tuning code to find the best k 6/5/25 took about 30 minutes, and did the some of the K clustering slides as well, on the same day 30 minutes.
 -Justin Mai
+
+
+Did all of my work on 6/5/25. 
+Read in and processed both of our data files in the Matrix Class, and put them into Data Matrix Objects. Applied One Hot Encoding and Standardization methods on data read in. 
+Used the Data Matrix Objects to run the K Means Clustering Algorithm. Attempted to created the visual for K Means Clustering. 
+Took About 5 Hours to write all code. 
+- Tara Rajagopalan
