@@ -5,9 +5,14 @@ public class Processing {
     {
         System.out.println("testing");
     }
+
     public static void normalize(double[][] matrix, int end){
+        //change method signature to static double[][]
+        //make a return matrix here: double[][] returnMatrix = new returnMatrix[#rows][#cols]
         for (int col = 0; col < end; col++){
             for (int row = 0; row < matrix.length; row++){
+
+                //returnMatrix[row][col] = standardize(matrix, row, col)
                 matrix[row][col] = standardize(matrix, row, col);
             }
         }
@@ -21,7 +26,7 @@ public class Processing {
         return Math.sqrt(sum);
     }
 
-    private static double standardize(double[][] matrix, int row, int col){
+    public static double standardize(double[][] matrix, int row, int col){
         double mean =  mean(matrix, col);
         return (matrix[row][col] - mean) / stddev(matrix, col, mean);
     }
