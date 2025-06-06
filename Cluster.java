@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Cluster {
-    Point cenroid;
+    Point centroid;
     List<Point> points;
 
     public Cluster(Point firstCentroid){
-        this.cenroid = firstCentroid;
+        this.centroid = firstCentroid;
         this.points = new ArrayList<>();
     }
 
@@ -22,12 +22,12 @@ public class Cluster {
     public void updateCentroid(){
         Point newCentroid = Point.average(points);
         if (newCentroid != null){
-            cenroid = newCentroid;
+            centroid = newCentroid;
         }
     }
 
-    public Point getCenroid() {
-        return cenroid;
+    public Point getCentroid() {
+        return centroid;
     }
 
     public List<Point> getPoints() {
