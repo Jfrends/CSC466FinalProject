@@ -13,3 +13,8 @@ Read in and processed both of our data files in the Matrix Class, and put them i
 Used the Data Matrix Objects to run the K Means Clustering Algorithm. Attempted to created the visual for K Means Clustering. 
 Took About 5 Hours to write all code. 
 - Tara Rajagopalan
+
+
+5/23: Created GitHub and base files (~20 min)
+5/25: Wrote all DBSCAN code and all Processing code (normalization, stdev, mean, etc) (~5 hrs)
+6/5: Fixed bug in normalize, added functions to DBSCAN and KMeansClustering to print out data in csv format, wrote code for and performed hyperparameter tuning for DBSCAN and KMeansClustering, graphed best clusters for each, created slide show, did all slides for DBSCAN and Hyperparameter tuning (~4 hours) 
