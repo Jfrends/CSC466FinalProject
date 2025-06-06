@@ -63,7 +63,7 @@ public class Matrix {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("NumCols: " + numCols + " NumRows: " + numRows);
+        //System.out.println("NumCols: " + numCols + " NumRows: " + numRows);
 
 
 
@@ -115,10 +115,10 @@ public class Matrix {
         }
 
         //print out the data double array list:
-        for(int row = 0; row < data.length; row++)
+        /*for(int row = 0; row < data.length; row++)
         {
             System.out.println(dataTemp[row][0] + " " + dataTemp[row][1] + " " + dataTemp[row][2] + " " + genderColumn[row]);
-        }
+        }*/
 
         String[] categories = {"Male", "Female"};
 
@@ -143,11 +143,11 @@ public class Matrix {
             }
         }
 
-        for(int row = 0; row < numRows -1; row++)
+        /*for(int row = 0; row < numRows -1; row++)
         {
             System.out.println(data[row][3] + "  " + data[row][4] + " " + data[row][0] + " " + data[row][1] + " " + data[row][2]);
 
-        }
+        }*/
 
 
 
@@ -198,6 +198,8 @@ public class Matrix {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        data = Processing.normalize(data,numCols);
 
     }
 
