@@ -9,6 +9,23 @@ public class Testing {
         Matrix mallMatrix = new Matrix(mallFile, Matrix.MALLFILE);
 
 
+        //Mall File K Means Clustering:
+        List<Point> mallMatrixPoints = mallMatrix.getListOfPoints();
+        KMeansCluster KMeansClusterMall = new KMeansCluster(mallMatrixPoints, 5, 15);
+        KMeansClusterMall.algo();
+        List<Cluster> listClusters = KMeansClusterMall.getClusters();
+        for(Cluster cluster : listClusters)
+        {
+            Point centroid = cluster.getCenroid();
+            List<Point> points = cluster.getPoints();
+            System.out.println("Centroid is:  " + centroid.toString());
+            System.out.println("Points are below: ");
+            for(Point point : points)
+            {
+                System.out.println(point.toString());
+            }
+        }
+
         //Reading in the donutData File
         String donutFile = "C://Users//tarar//Downloads//donut_data.txt";
         Matrix donutMatrix = new Matrix(donutFile,Matrix.DONUTFILE);
